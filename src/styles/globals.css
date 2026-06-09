@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* ─── Variables CSS globales ─── */
+@theme {
+  --color-primary: #00ffff;       /* cyan néon */
+  --color-secondary: #a855f7;     /* violet */
+  --color-accent: #ff0080;        /* rose futuriste */
+  --color-bg: #020209;            /* fond quasi-noir */
+  --color-surface: #0d0d1a;       /* cartes / panels */
+  --color-text: #e2e8f0;
+  --color-muted: #64748b;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ─── Reset & base ─── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis prend le relais */
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbar futuriste */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-secondary);
+    color: #fff;
+  }
+}
