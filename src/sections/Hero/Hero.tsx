@@ -1,4 +1,4 @@
-import { GridScan } from "../../components/ui/GridScan"
+import { GridScan } from "../../components/ui/GridScan.jsx"
 
 export default function Hero() {
   return (
