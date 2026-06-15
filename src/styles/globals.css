@@ -1,5 +1,5 @@
-@import "tailwindcss";
-
+@import 'tailwindcss';
+@plugin 'lightswind/plugin';
 /* ─── Variables CSS globales ─── */
 @theme {
   --color-primary: #00ffff;       /* cyan néon */

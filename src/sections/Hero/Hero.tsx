@@ -1,5 +1,6 @@
 import { GridScan } from "../../components/ui/GridScan"
 import SplitText from "../../components/ui/SplitText"
+import ErrorBoundary from "../../components/ui/ErrorBoundary"
 
 export default function Hero() {
   return (
@@ -9,24 +10,26 @@ export default function Hero() {
     >
       {/* Background GridScan */}
       <div className="absolute inset-0 w-full h-full">
-        <GridScan
-          sensitivity={0.55}
-          lineThickness={1}
-          linesColor="#2F293A"
-          scanColor="#c8ff9f"
-          scanOpacity={0.4}
-          gridScale={0.1}
-          lineStyle="solid"
-          lineJitter={0}
-          scanDirection="pingpong"
-          noiseIntensity={0.01}
-          scanGlow={1}
-          scanSoftness={2}
-          scanDuration={1.5}
-          scanDelay={3}
-          scanOnClick
-        />
-      </div>
+  <ErrorBoundary fallback={<div className="absolute inset-0 bg-[var(--color-bg)]" />}>
+    <GridScan
+      sensitivity={0.55}
+      lineThickness={1}
+      linesColor="#2F293A"
+      scanColor="#c8ff9f"
+      scanOpacity={0.4}
+      gridScale={0.1}
+      lineStyle="solid"
+      lineJitter={0}
+      scanDirection="pingpong"
+      noiseIntensity={0.01}
+      scanGlow={1}
+      scanSoftness={2}
+      scanDuration={1.5}
+      scanDelay={3}
+      scanOnClick
+    />
+  </ErrorBoundary>
+</div>
 
       {/* Contenu principal — pointer-events-none pour laisser passer les events au GridScan */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 pointer-events-none">

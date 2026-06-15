@@ -1,5 +1,6 @@
 import Navbar      from './components/layout/Navbar'
 import PageWrapper from './components/layout/PageWrapper'
+import About from './sections/About/About'
 import Hero from './sections/Hero/Hero'
 
 export default function App() {
@@ -10,9 +11,7 @@ export default function App() {
       <main>
         <Hero />
 
-        <section id="about" className="min-h-screen flex items-center justify-center">
-          <p className="text-[var(--color-muted)] text-xl">About</p>
-        </section>
+        <About/>
 
         <section id="skills" className="min-h-screen flex items-center justify-center">
           <p className="text-[var(--color-muted)] text-xl">Skills</p>
