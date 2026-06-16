@@ -1,30 +1,23 @@
-@import 'tailwindcss';
-@plugin 'lightswind/plugin';
-/* ─── Variables CSS globales ─── */
-@theme {
-  --color-primary: #00ffff;       /* cyan néon */
-  --color-secondary: #a855f7;     /* violet */
-  --color-accent: #ff0080;        /* rose futuriste */
-  --color-bg: #020209;            /* fond quasi-noir */
-  --color-surface: #0d0d1a;       /* cartes / panels */
-  --color-text: #e2e8f0;
-  --color-muted: #64748b;
+@import "tailwindcss";
 
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+@theme {
+  /* ── Palette Or / Gold ── */
+  --color-primary:   #FFD700;   /* or pur */
+  --color-secondary: #B8860B;   /* or foncé / dark gold */
+  --color-accent:    #FF6B35;   /* orange chaud — complément du or */
+  --color-bg:        #080808;   /* noir profond */
+  --color-surface:   #111111;   /* surfaces / cards */
+  --color-text:      #F5F0E8;   /* blanc cassé / ivoire */
+  --color-muted:     #6B6560;   /* texte secondaire */
+
+  --font-sans:  'Inter', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;  /* police poster */
 }
 
-/* ─── Reset & base ─── */
 @layer base {
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html {
-    scroll-behavior: auto; /* Lenis prend le relais */
-  }
+  html { scroll-behavior: auto; }
 
   body {
     background-color: var(--color-bg);
@@ -34,7 +27,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Scrollbar futuriste */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--color-bg); }
   ::-webkit-scrollbar-thumb {
@@ -43,7 +35,7 @@
   }
 
   ::selection {
-    background: var(--color-secondary);
-    color: #fff;
+    background: var(--color-primary);
+    color: #000;
   }
 }

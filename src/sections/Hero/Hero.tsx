@@ -1,5 +1,5 @@
 import { GridScan } from "../../components/ui/GridScan"
-import SplitText from "../../components/ui/SplitText"
+// import SplitText from "../../components/ui/SplitText"
 import ErrorBoundary from "../../components/ui/ErrorBoundary"
 
 export default function Hero() {
@@ -34,22 +34,40 @@ export default function Hero() {
       {/* Contenu principal — pointer-events-none pour laisser passer les events au GridScan */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 pointer-events-none">
 
-        {/* ── Colonne gauche : infos ── */}
-        <div className="flex-1 flex flex-col items-start justify-center">
-          <SplitText
-            text="Salut, Je suis Charles Emmanuel, Développeur Full-Stack. Je transforme vos problèmes en solution digitale innovante. Je conçois des applications web et Mobile performantes, de l'interface jusqu'au serveur."
-            className="text-3xl md:text-3xl font-semibold text-left text-[var(--color-text)] leading-snug"
-            delay={60}
-            duration={2}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="left"
-          />
-        </div>
+        {/* ── Colonne gauche : infos style affiche ── */}
+<div className="flex-1 flex flex-col items-start justify-center pointer-events-none">
+
+  {/* Surtitre */}
+  <p className="text-[var(--color-primary)] text-sm md:text-base tracking-[0.4em] uppercase font-medium mb-2">
+    Disponible • Freelance & CDI
+  </p>
+
+  {/* Nom — ultra large */}
+  <h1
+    className="text-[clamp(4rem,12vw,10rem)] leading-[0.9] uppercase text-[var(--color-text)]"
+    style={{ fontFamily: 'var(--font-display)' }}
+  >
+    Charles
+    <br />
+    <span className="text-[var(--color-primary)]">
+      Emmanuel
+    </span>
+  </h1>
+
+  {/* Séparateur or */}
+  <div className="w-24 h-[3px] bg-[var(--color-primary)] my-4" />
+
+  {/* Titre métier */}
+  <p
+    className="text-[clamp(1.5rem,4vw,3rem)] leading-tight uppercase text-[var(--color-muted)] tracking-widest"
+    style={{ fontFamily: 'var(--font-display)' }}
+  >
+    Développeur
+    <br />
+    <span className="text-[var(--color-text)]">Full — Stack</span>
+  </p>
+
+</div>
 
         {/* ── Colonne droite : photo ── */}
         <div className="flex-1 flex items-center justify-center">
