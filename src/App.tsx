@@ -14,15 +14,15 @@ export default function App() {
         <About/>
 
         <section id="skills" className="min-h-screen flex items-center justify-center">
-          <p className="text-[var(--color-muted)] text-xl">Skills</p>
+          <p className="text-[var(--color-muted)] text-xl">Mes Compétences</p>
         </section>
 
         <section id="projects" className="min-h-screen flex items-center justify-center">
-          <p className="text-[var(--color-muted)] text-xl">Projects</p>
+          <p className="text-[var(--color-muted)] text-xl">Mes Projets</p>
         </section>
 
         <section id="experience" className="min-h-screen flex items-center justify-center">
-          <p className="text-[var(--color-muted)] text-xl">Experience</p>
+          <p className="text-[var(--color-muted)] text-xl">Mes Experiences</p>
         </section>
 
         <section id="contact" className="min-h-screen flex items-center justify-center">
