@@ -5,6 +5,7 @@ import Hero from './sections/Hero/Hero'
 import Skills from './sections/Skills/Skills'
 import Projects from './sections/Projects/Projects'
 import Experience from './sections/Experience/Experience'
+import Contact from './sections/Contact/Contact'
 
 export default function App() {
   return (
@@ -22,9 +23,8 @@ export default function App() {
 
         <Experience />
 
-        <section id="contact" className="min-h-screen flex items-center justify-center">
-          <p className="text-[var(--color-muted)] text-xl">Contact</p>
-        </section>
+        <Contact />
+
       </main>
     </PageWrapper>
   )

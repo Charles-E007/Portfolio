@@ -40,13 +40,13 @@ export default function ProjectCard({ project, style, isActive }: ProjectCardPro
       {/* ── Contenu ── */}
       <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-4">
         <h3
-          className="text-2xl text-[var(--color-text)] uppercase leading-tight"
+          className="text-3xl text-[var(--color-text)] uppercase leading-tight font-black"
           style={{ fontFamily: "var(--font-display)" }}
         >
           {project.title}
         </h3>
 
-        <p className="text-sm text-[var(--color-muted)] leading-relaxed line-clamp-3">
+        <p className="text-xl text-[var(--color-primary)] leading-relaxed line-clamp-3 font-black">
           {project.description}
         </p>
 
@@ -55,7 +55,7 @@ export default function ProjectCard({ project, style, isActive }: ProjectCardPro
             <span
               key={tech}
               className="text-[11px] uppercase tracking-wide px-2 py-1 rounded-full
-                         border border-[var(--color-primary)]/40 text-[var(--color-primary)]"
+                        border border-[var(--color-primary)]/40 text-[var(--color-primary)]"
             >
               {tech}
             </span>
