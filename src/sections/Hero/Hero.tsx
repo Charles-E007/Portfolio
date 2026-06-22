@@ -79,8 +79,8 @@ export default function Hero() {
         <div className="flex-1 flex items-center justify-center">
           <img
             className="w-72 h-72 md:w-80 md:h-80 rounded-full border-2 border-[var(--color-primary)]/40 object-cover"
-            src="/image/photo_portfolio.jpg"
-            alt="Charles Emmanuel"
+            src="/image/photo.jpg"
+            alt="Photo de Charles Emmanuel "
           />
         </div>
       </div>
