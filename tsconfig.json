@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["ES2021", "DOM"],
     "jsx": "react-jsx",
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
@@ -7,11 +8,15 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "target": "ES2020",
     "module": "ESNext",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
+    "paths": { "@/*": ["./*"] },
+    "noEmit": true,
+    "strict": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "build"]
 }

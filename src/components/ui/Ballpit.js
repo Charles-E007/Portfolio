@@ -1,3 +1,15 @@
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _X_instances, _X_config, _X_postprocessing, _X_resizeObserver, _X_intersectionObserver, _X_resizeTimer, _X_animationFrameId, _X_clock, _X_animationState, _X_isAnimating, _X_isVisible, _X_initCamera, _X_initScene, _X_initRenderer, _X_initObservers, _X_onResize, _X_updateCamera, _X_adjustFov, _X_updateRenderer, _X_onIntersection, _X_onVisibilityChange, _X_startAnimation, _X_stopAnimation, _X_render, _X_onResizeCleanup, _W_instances, _W_initializePositions, _Z_instances, _Z_setupLights;
 import { jsx as _jsx } from "react/jsx-runtime";
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
@@ -6,106 +18,45 @@ import { ACESFilmicToneMapping, AmbientLight, Clock, Color, InstancedMesh, MathU
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 gsap.registerPlugin(Observer);
 class X {
-    #config;
-    #postprocessing;
-    #resizeObserver;
-    #intersectionObserver;
-    #resizeTimer;
-    #animationFrameId = 0;
-    #clock = new Clock();
-    #animationState = { elapsed: 0, delta: 0 };
-    #isAnimating = false;
-    #isVisible = false;
-    canvas;
-    camera;
-    cameraMinAspect;
-    cameraMaxAspect;
-    cameraFov;
-    maxPixelRatio;
-    minPixelRatio;
-    scene;
-    renderer;
-    size = {
-        width: 0,
-        height: 0,
-        wWidth: 0,
-        wHeight: 0,
-        ratio: 0,
-        pixelRatio: 0
-    };
-    render = this.#render.bind(this);
-    onBeforeRender = () => { };
-    onAfterRender = () => { };
-    onAfterResize = () => { };
-    isDisposed = false;
     constructor(config) {
-        this.#config = { ...config };
-        this.#initCamera();
-        this.#initScene();
-        this.#initRenderer();
-        this.resize();
-        this.#initObservers();
-    }
-    #initCamera() {
-        this.camera = new PerspectiveCamera();
-        this.cameraFov = this.camera.fov;
-    }
-    #initScene() {
-        this.scene = new Scene();
-    }
-    #initRenderer() {
-        if (this.#config.canvas) {
-            this.canvas = this.#config.canvas;
-        }
-        else if (this.#config.id) {
-            const elem = document.getElementById(this.#config.id);
-            if (elem instanceof HTMLCanvasElement) {
-                this.canvas = elem;
-            }
-            else {
-                console.error('Three: Missing canvas or id parameter');
-            }
-        }
-        else {
-            console.error('Three: Missing canvas or id parameter');
-        }
-        this.canvas.style.display = 'block';
-        const rendererOptions = {
-            canvas: this.canvas,
-            powerPreference: 'high-performance',
-            ...(this.#config.rendererOptions ?? {})
+        _X_instances.add(this);
+        _X_config.set(this, void 0);
+        _X_postprocessing.set(this, void 0);
+        _X_resizeObserver.set(this, void 0);
+        _X_intersectionObserver.set(this, void 0);
+        _X_resizeTimer.set(this, void 0);
+        _X_animationFrameId.set(this, 0);
+        _X_clock.set(this, new Clock());
+        _X_animationState.set(this, { elapsed: 0, delta: 0 });
+        _X_isAnimating.set(this, false);
+        _X_isVisible.set(this, false);
+        this.size = {
+            width: 0,
+            height: 0,
+            wWidth: 0,
+            wHeight: 0,
+            ratio: 0,
+            pixelRatio: 0
         };
-        this.renderer = new WebGLRenderer(rendererOptions);
-        this.renderer.outputColorSpace = SRGBColorSpace;
-    }
-    #initObservers() {
-        if (!(this.#config.size instanceof Object)) {
-            window.addEventListener('resize', this.#onResize.bind(this));
-            if (this.#config.size === 'parent' && this.canvas.parentNode) {
-                this.#resizeObserver = new ResizeObserver(this.#onResize.bind(this));
-                this.#resizeObserver.observe(this.canvas.parentNode);
-            }
-        }
-        this.#intersectionObserver = new IntersectionObserver(this.#onIntersection.bind(this), {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0
-        });
-        this.#intersectionObserver.observe(this.canvas);
-        document.addEventListener('visibilitychange', this.#onVisibilityChange.bind(this));
-    }
-    #onResize() {
-        if (this.#resizeTimer)
-            clearTimeout(this.#resizeTimer);
-        this.#resizeTimer = window.setTimeout(this.resize.bind(this), 100);
+        this.render = __classPrivateFieldGet(this, _X_instances, "m", _X_render).bind(this);
+        this.onBeforeRender = () => { };
+        this.onAfterRender = () => { };
+        this.onAfterResize = () => { };
+        this.isDisposed = false;
+        __classPrivateFieldSet(this, _X_config, { ...config }, "f");
+        __classPrivateFieldGet(this, _X_instances, "m", _X_initCamera).call(this);
+        __classPrivateFieldGet(this, _X_instances, "m", _X_initScene).call(this);
+        __classPrivateFieldGet(this, _X_instances, "m", _X_initRenderer).call(this);
+        this.resize();
+        __classPrivateFieldGet(this, _X_instances, "m", _X_initObservers).call(this);
     }
     resize() {
         let w, h;
-        if (this.#config.size instanceof Object) {
-            w = this.#config.size.width;
-            h = this.#config.size.height;
+        if (__classPrivateFieldGet(this, _X_config, "f").size instanceof Object) {
+            w = __classPrivateFieldGet(this, _X_config, "f").size.width;
+            h = __classPrivateFieldGet(this, _X_config, "f").size.height;
         }
-        else if (this.#config.size === 'parent' && this.canvas.parentNode) {
+        else if (__classPrivateFieldGet(this, _X_config, "f").size === 'parent' && this.canvas.parentNode) {
             w = this.canvas.parentNode.offsetWidth;
             h = this.canvas.parentNode.offsetHeight;
         }
@@ -116,30 +67,9 @@ class X {
         this.size.width = w;
         this.size.height = h;
         this.size.ratio = w / h;
-        this.#updateCamera();
-        this.#updateRenderer();
+        __classPrivateFieldGet(this, _X_instances, "m", _X_updateCamera).call(this);
+        __classPrivateFieldGet(this, _X_instances, "m", _X_updateRenderer).call(this);
         this.onAfterResize(this.size);
-    }
-    #updateCamera() {
-        this.camera.aspect = this.size.width / this.size.height;
-        if (this.camera.isPerspectiveCamera && this.cameraFov) {
-            if (this.cameraMinAspect && this.camera.aspect < this.cameraMinAspect) {
-                this.#adjustFov(this.cameraMinAspect);
-            }
-            else if (this.cameraMaxAspect && this.camera.aspect > this.cameraMaxAspect) {
-                this.#adjustFov(this.cameraMaxAspect);
-            }
-            else {
-                this.camera.fov = this.cameraFov;
-            }
-        }
-        this.camera.updateProjectionMatrix();
-        this.updateWorldSize();
-    }
-    #adjustFov(aspect) {
-        const tanFov = Math.tan(MathUtils.degToRad(this.cameraFov / 2));
-        const newTan = tanFov / (this.camera.aspect / aspect);
-        this.camera.fov = 2 * MathUtils.radToDeg(Math.atan(newTan));
     }
     updateWorldSize() {
         if (this.camera.isPerspectiveCamera) {
@@ -153,59 +83,12 @@ class X {
             this.size.wWidth = cam.right - cam.left;
         }
     }
-    #updateRenderer() {
-        this.renderer.setSize(this.size.width, this.size.height);
-        this.#postprocessing?.setSize(this.size.width, this.size.height);
-        let pr = window.devicePixelRatio;
-        if (this.maxPixelRatio && pr > this.maxPixelRatio) {
-            pr = this.maxPixelRatio;
-        }
-        else if (this.minPixelRatio && pr < this.minPixelRatio) {
-            pr = this.minPixelRatio;
-        }
-        this.renderer.setPixelRatio(pr);
-        this.size.pixelRatio = pr;
-    }
     get postprocessing() {
-        return this.#postprocessing;
+        return __classPrivateFieldGet(this, _X_postprocessing, "f");
     }
     set postprocessing(value) {
-        this.#postprocessing = value;
+        __classPrivateFieldSet(this, _X_postprocessing, value, "f");
         this.render = value.render.bind(value);
-    }
-    #onIntersection(entries) {
-        this.#isAnimating = entries[0].isIntersecting;
-        this.#isAnimating ? this.#startAnimation() : this.#stopAnimation();
-    }
-    #onVisibilityChange() {
-        if (this.#isAnimating) {
-            document.hidden ? this.#stopAnimation() : this.#startAnimation();
-        }
-    }
-    #startAnimation() {
-        if (this.#isVisible)
-            return;
-        const animateFrame = () => {
-            this.#animationFrameId = requestAnimationFrame(animateFrame);
-            this.#animationState.delta = this.#clock.getDelta();
-            this.#animationState.elapsed += this.#animationState.delta;
-            this.onBeforeRender(this.#animationState);
-            this.render();
-            this.onAfterRender(this.#animationState);
-        };
-        this.#isVisible = true;
-        this.#clock.start();
-        animateFrame();
-    }
-    #stopAnimation() {
-        if (this.#isVisible) {
-            cancelAnimationFrame(this.#animationFrameId);
-            this.#isVisible = false;
-            this.#clock.stop();
-        }
-    }
-    #render() {
-        this.renderer.render(this.scene, this.camera);
     }
     clear() {
         this.scene.traverse(obj => {
@@ -223,45 +106,140 @@ class X {
         this.scene.clear();
     }
     dispose() {
-        this.#onResizeCleanup();
-        this.#stopAnimation();
+        __classPrivateFieldGet(this, _X_instances, "m", _X_onResizeCleanup).call(this);
+        __classPrivateFieldGet(this, _X_instances, "m", _X_stopAnimation).call(this);
         this.clear();
-        this.#postprocessing?.dispose();
+        __classPrivateFieldGet(this, _X_postprocessing, "f")?.dispose();
         this.renderer.dispose();
         this.renderer.forceContextLoss();
         this.isDisposed = true;
     }
-    #onResizeCleanup() {
-        window.removeEventListener('resize', this.#onResize.bind(this));
-        this.#resizeObserver?.disconnect();
-        this.#intersectionObserver?.disconnect();
-        document.removeEventListener('visibilitychange', this.#onVisibilityChange.bind(this));
-    }
 }
+_X_config = new WeakMap(), _X_postprocessing = new WeakMap(), _X_resizeObserver = new WeakMap(), _X_intersectionObserver = new WeakMap(), _X_resizeTimer = new WeakMap(), _X_animationFrameId = new WeakMap(), _X_clock = new WeakMap(), _X_animationState = new WeakMap(), _X_isAnimating = new WeakMap(), _X_isVisible = new WeakMap(), _X_instances = new WeakSet(), _X_initCamera = function _X_initCamera() {
+    this.camera = new PerspectiveCamera();
+    this.cameraFov = this.camera.fov;
+}, _X_initScene = function _X_initScene() {
+    this.scene = new Scene();
+}, _X_initRenderer = function _X_initRenderer() {
+    if (__classPrivateFieldGet(this, _X_config, "f").canvas) {
+        this.canvas = __classPrivateFieldGet(this, _X_config, "f").canvas;
+    }
+    else if (__classPrivateFieldGet(this, _X_config, "f").id) {
+        const elem = document.getElementById(__classPrivateFieldGet(this, _X_config, "f").id);
+        if (elem instanceof HTMLCanvasElement) {
+            this.canvas = elem;
+        }
+        else {
+            console.error('Three: Missing canvas or id parameter');
+        }
+    }
+    else {
+        console.error('Three: Missing canvas or id parameter');
+    }
+    this.canvas.style.display = 'block';
+    const rendererOptions = {
+        canvas: this.canvas,
+        powerPreference: 'high-performance',
+        ...(__classPrivateFieldGet(this, _X_config, "f").rendererOptions ?? {})
+    };
+    this.renderer = new WebGLRenderer(rendererOptions);
+    this.renderer.outputColorSpace = SRGBColorSpace;
+}, _X_initObservers = function _X_initObservers() {
+    if (!(__classPrivateFieldGet(this, _X_config, "f").size instanceof Object)) {
+        window.addEventListener('resize', __classPrivateFieldGet(this, _X_instances, "m", _X_onResize).bind(this));
+        if (__classPrivateFieldGet(this, _X_config, "f").size === 'parent' && this.canvas.parentNode) {
+            __classPrivateFieldSet(this, _X_resizeObserver, new ResizeObserver(__classPrivateFieldGet(this, _X_instances, "m", _X_onResize).bind(this)), "f");
+            __classPrivateFieldGet(this, _X_resizeObserver, "f").observe(this.canvas.parentNode);
+        }
+    }
+    __classPrivateFieldSet(this, _X_intersectionObserver, new IntersectionObserver(__classPrivateFieldGet(this, _X_instances, "m", _X_onIntersection).bind(this), {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0
+    }), "f");
+    __classPrivateFieldGet(this, _X_intersectionObserver, "f").observe(this.canvas);
+    document.addEventListener('visibilitychange', __classPrivateFieldGet(this, _X_instances, "m", _X_onVisibilityChange).bind(this));
+}, _X_onResize = function _X_onResize() {
+    if (__classPrivateFieldGet(this, _X_resizeTimer, "f"))
+        clearTimeout(__classPrivateFieldGet(this, _X_resizeTimer, "f"));
+    __classPrivateFieldSet(this, _X_resizeTimer, window.setTimeout(this.resize.bind(this), 100), "f");
+}, _X_updateCamera = function _X_updateCamera() {
+    this.camera.aspect = this.size.width / this.size.height;
+    if (this.camera.isPerspectiveCamera && this.cameraFov) {
+        if (this.cameraMinAspect && this.camera.aspect < this.cameraMinAspect) {
+            __classPrivateFieldGet(this, _X_instances, "m", _X_adjustFov).call(this, this.cameraMinAspect);
+        }
+        else if (this.cameraMaxAspect && this.camera.aspect > this.cameraMaxAspect) {
+            __classPrivateFieldGet(this, _X_instances, "m", _X_adjustFov).call(this, this.cameraMaxAspect);
+        }
+        else {
+            this.camera.fov = this.cameraFov;
+        }
+    }
+    this.camera.updateProjectionMatrix();
+    this.updateWorldSize();
+}, _X_adjustFov = function _X_adjustFov(aspect) {
+    const tanFov = Math.tan(MathUtils.degToRad(this.cameraFov / 2));
+    const newTan = tanFov / (this.camera.aspect / aspect);
+    this.camera.fov = 2 * MathUtils.radToDeg(Math.atan(newTan));
+}, _X_updateRenderer = function _X_updateRenderer() {
+    this.renderer.setSize(this.size.width, this.size.height);
+    __classPrivateFieldGet(this, _X_postprocessing, "f")?.setSize(this.size.width, this.size.height);
+    let pr = window.devicePixelRatio;
+    if (this.maxPixelRatio && pr > this.maxPixelRatio) {
+        pr = this.maxPixelRatio;
+    }
+    else if (this.minPixelRatio && pr < this.minPixelRatio) {
+        pr = this.minPixelRatio;
+    }
+    this.renderer.setPixelRatio(pr);
+    this.size.pixelRatio = pr;
+}, _X_onIntersection = function _X_onIntersection(entries) {
+    __classPrivateFieldSet(this, _X_isAnimating, entries[0].isIntersecting, "f");
+    __classPrivateFieldGet(this, _X_isAnimating, "f") ? __classPrivateFieldGet(this, _X_instances, "m", _X_startAnimation).call(this) : __classPrivateFieldGet(this, _X_instances, "m", _X_stopAnimation).call(this);
+}, _X_onVisibilityChange = function _X_onVisibilityChange() {
+    if (__classPrivateFieldGet(this, _X_isAnimating, "f")) {
+        document.hidden ? __classPrivateFieldGet(this, _X_instances, "m", _X_stopAnimation).call(this) : __classPrivateFieldGet(this, _X_instances, "m", _X_startAnimation).call(this);
+    }
+}, _X_startAnimation = function _X_startAnimation() {
+    if (__classPrivateFieldGet(this, _X_isVisible, "f"))
+        return;
+    const animateFrame = () => {
+        __classPrivateFieldSet(this, _X_animationFrameId, requestAnimationFrame(animateFrame), "f");
+        __classPrivateFieldGet(this, _X_animationState, "f").delta = __classPrivateFieldGet(this, _X_clock, "f").getDelta();
+        __classPrivateFieldGet(this, _X_animationState, "f").elapsed += __classPrivateFieldGet(this, _X_animationState, "f").delta;
+        this.onBeforeRender(__classPrivateFieldGet(this, _X_animationState, "f"));
+        this.render();
+        this.onAfterRender(__classPrivateFieldGet(this, _X_animationState, "f"));
+    };
+    __classPrivateFieldSet(this, _X_isVisible, true, "f");
+    __classPrivateFieldGet(this, _X_clock, "f").start();
+    animateFrame();
+}, _X_stopAnimation = function _X_stopAnimation() {
+    if (__classPrivateFieldGet(this, _X_isVisible, "f")) {
+        cancelAnimationFrame(__classPrivateFieldGet(this, _X_animationFrameId, "f"));
+        __classPrivateFieldSet(this, _X_isVisible, false, "f");
+        __classPrivateFieldGet(this, _X_clock, "f").stop();
+    }
+}, _X_render = function _X_render() {
+    this.renderer.render(this.scene, this.camera);
+}, _X_onResizeCleanup = function _X_onResizeCleanup() {
+    window.removeEventListener('resize', __classPrivateFieldGet(this, _X_instances, "m", _X_onResize).bind(this));
+    __classPrivateFieldGet(this, _X_resizeObserver, "f")?.disconnect();
+    __classPrivateFieldGet(this, _X_intersectionObserver, "f")?.disconnect();
+    document.removeEventListener('visibilitychange', __classPrivateFieldGet(this, _X_instances, "m", _X_onVisibilityChange).bind(this));
+};
 class W {
-    config;
-    positionData;
-    velocityData;
-    sizeData;
-    center = new Vector3();
     constructor(config) {
+        _W_instances.add(this);
+        this.center = new Vector3();
         this.config = config;
         this.positionData = new Float32Array(3 * config.count).fill(0);
         this.velocityData = new Float32Array(3 * config.count).fill(0);
         this.sizeData = new Float32Array(config.count).fill(1);
         this.center = new Vector3();
-        this.#initializePositions();
+        __classPrivateFieldGet(this, _W_instances, "m", _W_initializePositions).call(this);
         this.setSizes();
-    }
-    #initializePositions() {
-        const { config, positionData } = this;
-        this.center.toArray(positionData, 0);
-        for (let i = 1; i < config.count; i++) {
-            const idx = 3 * i;
-            positionData[idx] = MathUtils.randFloatSpread(2 * config.maxX);
-            positionData[idx + 1] = MathUtils.randFloatSpread(2 * config.maxY);
-            positionData[idx + 2] = MathUtils.randFloatSpread(2 * config.maxZ);
-        }
     }
     setSizes() {
         const { config, sizeData } = this;
@@ -351,17 +329,26 @@ class W {
         }
     }
 }
+_W_instances = new WeakSet(), _W_initializePositions = function _W_initializePositions() {
+    const { config, positionData } = this;
+    this.center.toArray(positionData, 0);
+    for (let i = 1; i < config.count; i++) {
+        const idx = 3 * i;
+        positionData[idx] = MathUtils.randFloatSpread(2 * config.maxX);
+        positionData[idx + 1] = MathUtils.randFloatSpread(2 * config.maxY);
+        positionData[idx + 2] = MathUtils.randFloatSpread(2 * config.maxZ);
+    }
+};
 class Y extends MeshPhysicalMaterial {
-    uniforms = {
-        thicknessDistortion: { value: 0.1 },
-        thicknessAmbient: { value: 0 },
-        thicknessAttenuation: { value: 0.1 },
-        thicknessPower: { value: 2 },
-        thicknessScale: { value: 10 }
-    };
-    defines;
     constructor(params) {
         super(params);
+        this.uniforms = {
+            thicknessDistortion: { value: 0.1 },
+            thicknessAmbient: { value: 0 },
+            thicknessAttenuation: { value: 0.1 },
+            thicknessPower: { value: 2 },
+            thicknessScale: { value: 10 }
+        };
         this.defines = { USE_UV: '' };
         this.onBeforeCompile = shader => {
             Object.assign(shader.uniforms, this.uniforms);
@@ -396,7 +383,6 @@ class Y extends MeshPhysicalMaterial {
                 this.onBeforeCompile2(shader);
         };
     }
-    onBeforeCompile2;
 }
 const XConfig = {
     count: 200,
@@ -574,10 +560,6 @@ function isInside(rect) {
         pointerPosition.y <= rect.top + rect.height);
 }
 class Z extends InstancedMesh {
-    config;
-    physics;
-    ambientLight;
-    light;
     constructor(renderer, params = {}) {
         const config = { ...XConfig, ...params };
         const roomEnv = new RoomEnvironment();
@@ -587,16 +569,11 @@ class Z extends InstancedMesh {
         const material = new Y({ envMap: envTexture, ...config.materialParams });
         material.envMapRotation.x = -Math.PI / 2;
         super(geometry, material, config.count);
+        _Z_instances.add(this);
         this.config = config;
         this.physics = new W(config);
-        this.#setupLights();
+        __classPrivateFieldGet(this, _Z_instances, "m", _Z_setupLights).call(this);
         this.setColors(config.colors);
-    }
-    #setupLights() {
-        this.ambientLight = new AmbientLight(this.config.ambientColor, this.config.ambientIntensity);
-        this.add(this.ambientLight);
-        this.light = new PointLight(this.config.colors[0], this.config.lightIntensity);
-        this.add(this.light);
     }
     setColors(colors) {
         if (Array.isArray(colors) && colors.length > 1) {
@@ -659,6 +636,12 @@ class Z extends InstancedMesh {
         this.instanceMatrix.needsUpdate = true;
     }
 }
+_Z_instances = new WeakSet(), _Z_setupLights = function _Z_setupLights() {
+    this.ambientLight = new AmbientLight(this.config.ambientColor, this.config.ambientIntensity);
+    this.add(this.ambientLight);
+    this.light = new PointLight(this.config.colors[0], this.config.lightIntensity);
+    this.add(this.light);
+};
 function createBallpit(canvas, config = {}) {
     const threeInstance = new X({
         canvas,
