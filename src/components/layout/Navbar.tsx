@@ -144,10 +144,11 @@ export default function Navbar() {
               
               {/* Rappel du bouton d'action tout en bas du menu mobile */}
               <li className="pt-2 sm:hidden">
+                {/* Bouton d'action principal — Téléchargement du CV */}
                 <a
-                  href="#contact"
-                  onClick={() => handleNavClick('#contact')}
-                  className="w-full flex items-center justify-center gap-2 text-black bg-[var(--color-primary)] font-semibold rounded-md text-xs py-3 uppercase tracking-wider"
+                  href="/cv-charles-emmanuel.pdf" // Chemin vers ton fichier dans le dossier public
+                  download="CV_Charles_Emmanuel.pdf" // Nom que prendra le fichier une fois téléchargé
+                  className="hidden sm:flex items-center gap-2 text-black bg-[var(--color-primary)] hover:bg-[var(--color-secondary)] transition-all duration-300 font-semibold rounded-md text-xs px-4 py-2 uppercase tracking-wider shadow-md hover:shadow-[var(--color-primary)]/20 hover:scale-[1.02]"
                 >
                   <FiDownload className="w-3.5 h-3.5 stroke-[2.5]" />
                   Mon CV

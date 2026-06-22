@@ -122,7 +122,7 @@ const Loader = () => {
 }
 
 const StyledWrapper = styled.div`
-  #svg-global { zoom: 1.2; overflow: visible; }
+  #svg-global { overflow: visible; }
 
   @keyframes fade-particles {
     0%, 100% { opacity: 1; }
@@ -167,33 +167,18 @@ export default function About() {
       id="about"
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
     >
-      {/* Background DotGrid */}
-      {/* <div className="absolute inset-0 w-full h-full">
-        <DotGrid
-          dotSize={14}
-          gap={15}
-          baseColor="#3e3007"
-          activeColor="#FFD700"
-          proximity={120}
-          shockRadius={250}
-          shockStrength={20}
-          resistance={900}
-          returnDuration={5}
-        />
-      </div> */}
+      {/* Contenu — Réorganisé en colonne sur mobile, ligne sur Desktop */}
+      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 sm:px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
 
-      {/* Contenu — 2 colonnes */}
-      <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between gap-16 pointer-events-none">
+        {/* ── Colonne gauche : texte (S'adapte automatiquement à l'écran) ── */}
+        <div className="flex-1 flex flex-col gap-6 md:gap-10 w-full">
 
-        {/* ── Colonne gauche : texte ── */}
-        <div className="flex-1 flex flex-col gap-10">
-
-          {/* Titre */}
+          {/* Titre — Ajusté pour ne jamais déborder sur mobile */}
           <div>
             <motion.h2
-              className="text-[clamp(4rem,11vw,9rem)] leading-[0.85] uppercase text-[var(--color-primary)]"
+              className="text-[clamp(2.5rem,8vw,6.5rem)] leading-[0.9] uppercase text-[var(--color-primary)]"
               style={{ fontFamily: "var(--font-display)" }}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
@@ -204,7 +189,7 @@ export default function About() {
             </motion.h2>
 
             <motion.div
-              className="w-24 h-[3px] bg-[var(--color-primary)] mt-4"
+              className="w-16 md:w-24 h-[3px] bg-[var(--color-primary)] mt-3"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -213,11 +198,11 @@ export default function About() {
             />
           </div>
 
-          {/* Bio */}
+          {/* Bio — Clamp plus propre pour les téléphones */}
           <motion.p
-            className="text-[clamp(1.2rem,2.8vw,2.2rem)] leading-snug uppercase text-[var(--color-text)] max-w-2xl"
+            className="text-[clamp(1.05rem,2.5vw,1.65rem)] leading-snug uppercase text-[var(--color-text)] max-w-2xl"
             style={{ fontFamily: "var(--font-display)" }}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
@@ -233,15 +218,16 @@ export default function About() {
 
           {/* Bouton CV */}
           <motion.a
-            href="#"
-            className="pointer-events-auto self-start inline-flex items-center gap-3
-                       px-8 py-4 uppercase tracking-widest font-bold
-                       bg-[var(--color-primary)] text-black
+            href="/cv-charles-emmanuel.pdf" 
+            download="CV_Charles_Emmanuel.pdf"
+            className="self-start inline-flex items-center gap-3
+                       px-6 py-3.5 md:px-8 md:py-4 uppercase tracking-widest font-bold
+                       bg-[var(--color-primary)] text-black text-sm md:text-base
                        hover:bg-[var(--color-secondary)] transition-colors duration-200"
-            style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}
+            style={{ fontFamily: "var(--font-display)" }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.4 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -255,18 +241,23 @@ export default function About() {
           </motion.a>
         </div>
 
-        {/* ── Colonne droite : loader animé ── */}
+        {/* ── Colonne droite : loader animé (Échelle intelligente et dynamique) ── */}
         <motion.div
-          className="flex-1 flex items-center justify-center"
+          className="flex-1 flex items-center justify-center w-full mt-6 md:mt-0 min-h-[220px] md:min-h-0"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
           viewport={{ once: true }}
         >
-          {/* Glow derrière le loader */}
           <div className="relative">
-            <div className="absolute inset-0 blur-3xl bg-[var(--color-primary)]/20 rounded-full scale-150" />
-            <div className="relative" style={{ transform: "scale(3)", transformOrigin: "center" }}>
+            {/* Glow arrière-plan adapté */}
+            <div className="absolute inset-0 blur-3xl bg-[var(--color-primary)]/15 rounded-full scale-120 md:scale-150" />
+            
+            {/* ÉCHELLE DYNAMIQUE : Échelle de x1.5 sur mobile, x2.2 sur tablette, et x3 sur Desktop */}
+            <div 
+              className="relative scale-[1.5] sm:scale-[2.2] md:scale-[3] transition-transform duration-300" 
+              style={{ transformOrigin: "center" }}
+            >
               <Loader />
             </div>
           </div>
