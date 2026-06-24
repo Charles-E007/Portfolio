@@ -218,8 +218,8 @@ export default function About() {
 
           {/* Bouton CV */}
           <motion.a
-            href="/cv-charles-emmanuel.pdf" 
-            download="CV_Charles_Emmanuel.pdf"
+            href="/Charles_Emmanuel_CV.pdf" 
+            download="Charles_Emmanuel_CV.pdf"
             className="self-start inline-flex items-center gap-3
                        px-6 py-3.5 md:px-8 md:py-4 uppercase tracking-widest font-bold
                        bg-[var(--color-primary)] text-black text-sm md:text-base
