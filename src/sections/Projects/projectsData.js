@@ -5,7 +5,7 @@ export const projects = [
         description: "Ce projet est un site web conçu pour écrire un post-it (une note, un message ou un poème etc...)",
         stack: ["vue.js", "Tailwind", "API REST", "Uiverse.io", "TailwindFlex"],
         media: { type: "image", src: "/image/post-it/post-it.png" },
-        link: "https://post-it-livid.vercel.app/",
+        link: "https://charles-post-it.vercel.app",
     },
     {
         id: "project-2",
@@ -13,7 +13,7 @@ export const projects = [
         description: "Ce projet académique est un site vitrine. Ils nous avait été donné de réalisé conceptuellement la maquette d'un site vitrine",
         stack: ["HTML", "CSS", "Javascript"],
         media: { type: "image", src: "/image/vitrine/vitrine.png" },
-        link: "https://site-vitrine-beta-lake.vercel.app/",
+        link: "https://charles-site-vitrine.vercel.app",
     },
     // {
     //     id: "project-3",
