@@ -212,8 +212,11 @@ export default function About() {
             {" "}développeur Full-Stack et passionné de code et d'innovation.
             Je transforme vos problèmes en{" "}
             <span className="text-[var(--color-primary)]">solution digitale innovante</span>.
-            Je conçois des applications web et mobile performantes,
+            je conçois des interfaces modernes et développe des API robustes pour créer des 
+            solutions digitales utiles et performantes,
             de l'interface jusqu'au serveur.
+            Actuellement à la recherche d’un stage, je souhaite rejoindre une équipe dynamique afin
+            de renforcer mes compétences techniques, relever de nouveaux défis et participer activement au développement de projets innovants.
           </motion.p>
 
           {/* Bouton CV */}
