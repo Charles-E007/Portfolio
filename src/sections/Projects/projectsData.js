@@ -10,19 +10,19 @@ export const projects = [
     {
         id: "project-2",
         title: "Site vitrine integration",
-        description: "Ce projet académique est un site vitrine. Ils nous avait été donné de réalisé conceptuellement la maquette d'un site vitrine",
+        description: "Ce projet est un site vitrine. Il m'avait étét donné de réaliser conceptuellement à partir d'une maquette un site vitrine",
         stack: ["HTML", "CSS", "Javascript"],
         media: { type: "image", src: "/image/vitrine/vitrine.png" },
         link: "https://charles-site-vitrine.vercel.app",
     },
-    // {
-    //     id: "project-3",
-    //     title: "SIte vitrine integration",
-    //     description: "Ce projet académique est un site vitrine. Ils nous avait été donné de réalisé conceptuellement la maquette d'un site vitrine",
-    //     stack: ["HTML", "CSS", "Javascript"],
-    //     media: { type: "image", src: "/image/vitrine/vitrine.png" },
-    //     link: "https://site-vitrine-beta-lake.vercel.app/",
-    // },
+    {
+        id: "project-3",
+        title: "SIte vitrine integration",
+        description: "Ce projet est un site web qui  permet aux public de reserver facilement à un concert ou à un évènement (brunch, cérémonie etc...). ",
+        stack: ["Nestjs", "tailwind", "typescript", "flowbite", "mongodb", "ui component"],
+        media: { type: "image", src: "/image/showtime/showtime.png" },
+        link: "https://myshowtime-al1v.onrender.com",
+    },
     // {
     //     id: "project-2",
     //     title: "Widget Dashboard",
