@@ -17,7 +17,7 @@ export const projects = [
     },
     {
         id: "project-3",
-        title: "SMy Show Time",
+        title: "My Show Time",
         description: "Ce projet est un site web qui  permet aux public de reserver facilement à un concert ou à un évènement (brunch, cérémonie etc...). ",
         stack: ["Nestjs", "tailwind", "typescript", "flowbite", "mongodb", "ui component"],
         media: { type: "image", src: "/image/showtime/showtime.png" },
