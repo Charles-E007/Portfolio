@@ -2,8 +2,8 @@ export const experiences = [
     {
         id: "exp-1",
         year: "2025/2026 — Aujourd'hui",
-        title: "Développeur Full-Stack",
-        subtitle: "Freelance / CDI ou CDD",
+        title: "Développeur Full-Stack Junior",
+        subtitle: "Epitech & Wecode",
         description: "Conception et développement d'applications web et mobile complètes, de l'interface jusqu'au serveur.",
     },
     {
@@ -25,6 +25,6 @@ export const experiences = [
         year: "2023/2024",
         title: "Baccalaureat",
         subtitle: "Lycée Moderne Djedji Amondji ",
-        description: "Obtention du Baccalaureat après avoir passé 7 ans au Lycée Moderne Djedji Amondji Pierre",
+        description: "Obtention du Baccalaureat après avoir passé 6 ans au Lycée Moderne Djedji Amondji Pierre",
     },
 ];
