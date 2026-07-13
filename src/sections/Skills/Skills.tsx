@@ -19,7 +19,6 @@ const backendSkills = [
   { name: "Python",    Icon: SiPython,     color: "#3776AB" },
   { name: "Flask",     Icon: SiFlask,      color: "#F5F0E8" },
   { name: "NestJS",    Icon: SiNestjs,     color: "#E0234E" },
-  { name: "NextJS",    Icon: SiNextdotjs,  color: "#F5F0E8" },
   { name: "API REST",  Icon: TbApi,        color: "#FFD700" },
 ]
 
@@ -31,6 +30,7 @@ const frontendSkills = [
   { name: "React",         Icon: SiReact,       color: "#61DAFB" },
   { name: "React Native",  Icon: SiReact,       color: "#61DAFB" },
   { name: "VueJS",         Icon: SiVuedotjs,    color: "#4FC08D" },
+  { name: "NextJS",    Icon: SiNextdotjs,  color: "#F5F0E8" },
 ]
 
 const dbSkills = [
