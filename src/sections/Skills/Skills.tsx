@@ -14,31 +14,31 @@ import type { IconType } from "react-icons"
 // ── Data ──────────────────────────────────────────────────
 
 const backendSkills = [
-  { name: "PHP",      Icon: SiPhp,        level: 100, color: "#777BB4" },
-  { name: "Laravel",  Icon: SiLaravel,    level: 100, color: "#FF2D20" },
-  { name: "Python",   Icon: SiPython,     level: 100, color: "#3776AB" },
-  { name: "Flask",    Icon: SiFlask,      level: 100, color: "#F5F0E8" },
-  { name: "NestJS",   Icon: SiNestjs,     level: 100, color: "#E0234E" },
-  { name: "NextJS",   Icon: SiNextdotjs,  level: 100, color: "#F5F0E8" },
-  { name: "API REST", Icon: TbApi,        level: 100, color: "#FFD700" },
+  { name: "PHP",       Icon: SiPhp,        color: "#777BB4" },
+  { name: "Laravel",   Icon: SiLaravel,    color: "#FF2D20" },
+  { name: "Python",    Icon: SiPython,     color: "#3776AB" },
+  { name: "Flask",     Icon: SiFlask,      color: "#F5F0E8" },
+  { name: "NestJS",    Icon: SiNestjs,     color: "#E0234E" },
+  { name: "NextJS",    Icon: SiNextdotjs,  color: "#F5F0E8" },
+  { name: "API REST",  Icon: TbApi,        color: "#FFD700" },
 ]
 
 const frontendSkills = [
-  { name: "HTML",          Icon: SiHtml5,       level: 100, color: "#E34F26" },
-  { name: "CSS",           Icon: SiCss,         level: 100, color: "#1572B6" },
-  { name: "JavaScript",    Icon: SiJavascript,  level: 100, color: "#F7DF1E" },
-  { name: "TypeScript",    Icon: SiTypescript,  level: 100, color: "#3178C6" },
-  { name: "React",         Icon: SiReact,       level: 100, color: "#61DAFB" },
-  { name: "React Native",  Icon: SiReact,       level: 100, color: "#61DAFB" },
-  { name: "VueJS",         Icon: SiVuedotjs,    level: 100, color: "#4FC08D" },
+  { name: "HTML",          Icon: SiHtml5,       color: "#E34F26" },
+  { name: "CSS",           Icon: SiCss,         color: "#1572B6" },
+  { name: "JavaScript",    Icon: SiJavascript,  color: "#F7DF1E" },
+  { name: "TypeScript",    Icon: SiTypescript,  color: "#3178C6" },
+  { name: "React",         Icon: SiReact,       color: "#61DAFB" },
+  { name: "React Native",  Icon: SiReact,       color: "#61DAFB" },
+  { name: "VueJS",         Icon: SiVuedotjs,    color: "#4FC08D" },
 ]
 
 const dbSkills = [
-  { name: "MySQL",   Icon: SiMysql,    color: "#4479A1" },
-  { name: "MongoDB", Icon: SiMongodb,  color: "#47A248" },
-  { name: "SQL",     Icon: BsDatabase, color: "#FFD700" },
-  { name: "SQLite",  Icon: SiSqlite,   color: "#003B57" },
-  { name: "PostgreSQL",  Icon: SiPostgresql,   color: "#0c9ee2" },
+  { name: "MySQL",      Icon: SiMysql,      color: "#4479A1" },
+  { name: "MongoDB",    Icon: SiMongodb,    color: "#47A248" },
+  { name: "SQL",        Icon: BsDatabase,   color: "#FFD700" },
+  { name: "SQLite",     Icon: SiSqlite,     color: "#003B57" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#0c9ee2" },
 ]
 
 const librarySkills = [
@@ -57,58 +57,10 @@ const toolSkills = [
 
 // ── Composants ────────────────────────────────────────────
 
-interface SkillWithLevel {
-  name: string
-  Icon: IconType
-  level: number
-  color: string
-}
-
 interface SkillBase {
   name: string
   Icon: IconType
   color: string
-}
-
-function SkillCardWithProgress({ name, Icon, level, color, delay = 0 }: SkillWithLevel & { delay?: number }) {
-  return (
-    <motion.div
-      className="bg-[var(--color-surface)] border border-[var(--color-primary)]/20
-                 hover:border-[var(--color-primary)]/60 p-4 flex flex-col gap-3
-                 transition-colors duration-200"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      viewport={{ once: true }}
-    >
-      <div className="flex items-center gap-3">
-        <Icon size={22} color={color} />
-        <span
-          className="uppercase text-sm text-[var(--color-text)] flex-1"
-          style={{ fontFamily: "var(--font-display)", fontSize: "1rem" }}
-        >
-          {name}
-        </span>
-        <span
-          className="text-[var(--color-primary)] text-sm font-bold"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-        </span>
-      </div>
-
-      {/* Barre de progression */}
-      <div className="w-full h-[3px] bg-white/10 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full rounded-full"
-          style={{ background: "linear-gradient(90deg, var(--color-secondary), var(--color-primary))" }}
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          transition={{ duration: 1.2, delay: delay + 0.3, ease: "easeOut" }}
-          viewport={{ once: true }}
-        />
-      </div>
-    </motion.div>
-  )
 }
 
 function SkillCard({ name, Icon, color, delay = 0 }: SkillBase & { delay?: number }) {
@@ -161,7 +113,7 @@ export default function Skills() {
       className="relative w-full py-24 overflow-hidden"
       style={{ background: "var(--color-bg)" }}
     >
-      {/* Fond subtil — radial glow or */}
+      {/* Fond subtil — radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -210,9 +162,9 @@ export default function Skills() {
             viewport={{ once: true }}
           >
             <BlockTitle>Backend</BlockTitle>
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {backendSkills.map((skill, i) => (
-                <SkillCardWithProgress key={skill.name} {...skill} delay={i * 0.08} />
+                <SkillCard key={skill.name} {...skill} delay={i * 0.08} />
               ))}
             </div>
           </motion.div>
@@ -225,9 +177,9 @@ export default function Skills() {
             viewport={{ once: true }}
           >
             <BlockTitle>Frontend</BlockTitle>
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {frontendSkills.map((skill, i) => (
-                <SkillCardWithProgress key={skill.name} {...skill} delay={i * 0.08} />
+                <SkillCard key={skill.name} {...skill} delay={i * 0.08} />
               ))}
             </div>
           </motion.div>
