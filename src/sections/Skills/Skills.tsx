@@ -4,7 +4,8 @@ import {
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiReact, SiVuedotjs,
   SiMysql, SiMongodb, SiSqlite,
   SiBootstrap, SiTailwindcss,
-  SiGit, SiGithub, SiTrello, SiPostman, SiFigma, SiDocker
+  SiGit, SiGithub, SiTrello, SiPostman, SiFigma, SiDocker,
+  SiPostgresql
 } from "react-icons/si"
 import { TbApi } from "react-icons/tb"
 import { BsDatabase } from "react-icons/bs"
@@ -13,23 +14,23 @@ import type { IconType } from "react-icons"
 // ── Data ──────────────────────────────────────────────────
 
 const backendSkills = [
-  { name: "PHP",      Icon: SiPhp,        level: 85, color: "#777BB4" },
-  { name: "Laravel",  Icon: SiLaravel,    level: 95, color: "#FF2D20" },
-  { name: "Python",   Icon: SiPython,     level: 85, color: "#3776AB" },
-  { name: "Flask",    Icon: SiFlask,      level: 85, color: "#F5F0E8" },
-  { name: "NestJS",   Icon: SiNestjs,     level: 90, color: "#E0234E" },
-  { name: "NextJS",   Icon: SiNextdotjs,  level: 85, color: "#F5F0E8" },
-  { name: "API REST", Icon: TbApi,        level: 95, color: "#FFD700" },
+  { name: "PHP",      Icon: SiPhp,        level: 100, color: "#777BB4" },
+  { name: "Laravel",  Icon: SiLaravel,    level: 100, color: "#FF2D20" },
+  { name: "Python",   Icon: SiPython,     level: 100, color: "#3776AB" },
+  { name: "Flask",    Icon: SiFlask,      level: 100, color: "#F5F0E8" },
+  { name: "NestJS",   Icon: SiNestjs,     level: 100, color: "#E0234E" },
+  { name: "NextJS",   Icon: SiNextdotjs,  level: 100, color: "#F5F0E8" },
+  { name: "API REST", Icon: TbApi,        level: 100, color: "#FFD700" },
 ]
 
 const frontendSkills = [
-  { name: "HTML",          Icon: SiHtml5,       level: 90, color: "#E34F26" },
-  { name: "CSS",           Icon: SiCss,        level: 90, color: "#1572B6" },
-  { name: "JavaScript",    Icon: SiJavascript,  level: 85, color: "#F7DF1E" },
-  { name: "TypeScript",    Icon: SiTypescript,  level: 85, color: "#3178C6" },
-  { name: "React",         Icon: SiReact,       level: 85, color: "#61DAFB" },
-  { name: "React Native",  Icon: SiReact,       level: 85, color: "#61DAFB" },
-  { name: "VueJS",         Icon: SiVuedotjs,    level: 95, color: "#4FC08D" },
+  { name: "HTML",          Icon: SiHtml5,       level: 100, color: "#E34F26" },
+  { name: "CSS",           Icon: SiCss,         level: 100, color: "#1572B6" },
+  { name: "JavaScript",    Icon: SiJavascript,  level: 100, color: "#F7DF1E" },
+  { name: "TypeScript",    Icon: SiTypescript,  level: 100, color: "#3178C6" },
+  { name: "React",         Icon: SiReact,       level: 100, color: "#61DAFB" },
+  { name: "React Native",  Icon: SiReact,       level: 100, color: "#61DAFB" },
+  { name: "VueJS",         Icon: SiVuedotjs,    level: 100, color: "#4FC08D" },
 ]
 
 const dbSkills = [
@@ -37,6 +38,7 @@ const dbSkills = [
   { name: "MongoDB", Icon: SiMongodb,  color: "#47A248" },
   { name: "SQL",     Icon: BsDatabase, color: "#FFD700" },
   { name: "SQLite",  Icon: SiSqlite,   color: "#003B57" },
+  { name: "PostgreSQL",  Icon: SiPostgresql,   color: "#0c9ee2" },
 ]
 
 const librarySkills = [
@@ -91,7 +93,6 @@ function SkillCardWithProgress({ name, Icon, level, color, delay = 0 }: SkillWit
           className="text-[var(--color-primary)] text-sm font-bold"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          {level}%
         </span>
       </div>
 
