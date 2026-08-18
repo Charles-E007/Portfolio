@@ -1,7 +1,6 @@
 // src/components/ui/ContactForm.tsx
 import styled from "styled-components"
 import { useState, useRef, type FormEvent } from "react"
-import emailjs from "@emailjs/browser"
 
 type Status = "idle" | "sending" | "sent" | "error"
 
@@ -9,30 +8,48 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle")
   const formRef = useRef<HTMLFormElement | null>(null)
 
-  const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-  const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!formRef.current) return
 
-    const honeypot = (formRef.current.elements.namedItem("_hp") as HTMLInputElement | null)?.value
+    const formData = new FormData(formRef.current)
+    const honeypot = formData.get("_hp") as string
+    
+    // Si le champ honeypot est rempli par un bot, on stoppe silencieusement
     if (honeypot) return
 
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      setStatus("error")
-      return
+    setStatus("sending")
+
+    // Extraire les données du formulaire
+    const payload = {
+      firstName: formData.get("firstname"),
+      lastName: formData.get("lastname"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+      _hp: honeypot,
     }
 
-    setStatus("sending")
     try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+      
+      const response = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Erreur serveur HTTP: ${response.status}`)
+      }
+
       setStatus("sent")
       formRef.current.reset()
       ;(formRef.current.querySelector("input") as HTMLInputElement | null)?.focus()
     } catch (err) {
-      console.error("EmailJS error:", err)
+      console.error("Erreur d'envoi API:", err)
       setStatus("error")
     }
   }
@@ -77,7 +94,7 @@ export default function ContactForm() {
                 <span className="label-arrow">›</span> Nom
               </span>
               <input
-                name="from_name"
+                name="firstname"
                 className="terminal-input"
                 type="text"
                 placeholder="Votre prénom"
@@ -90,7 +107,7 @@ export default function ContactForm() {
                 <span className="label-arrow">›</span> Prénom
               </span>
               <input
-                name="from_lastname"
+                name="lastname"
                 className="terminal-input"
                 type="text"
                 placeholder="Votre nom"
@@ -106,7 +123,7 @@ export default function ContactForm() {
               <span className="label-arrow">›</span> Email
             </span>
             <input
-              name="reply_to"
+              name="email"
               className="terminal-input"
               type="email"
               placeholder="votre@email.com"
@@ -145,8 +162,6 @@ export default function ContactForm() {
 
           {/* Honeypot anti-spam */}
           <input name="_hp" type="text" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-
-
 
           {/* Bouton */}
           <button
@@ -211,13 +226,13 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1a1a1a;
-    padding: 10px 16px;
-    border-bottom: 1px solid rgba(255,215,0,0.1);
+    background-color: #1a1c24;
+    padding: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     user-select: none;
   }
 
-  .mac-dots { display: flex; align-items: center; gap: 7px; }
+  .mac-dots { display: flex; gap: 8px; }
 
   .dot {
     display: inline-block;
@@ -230,10 +245,12 @@ const StyledWrapper = styled.div`
   .dot.green  { background-color: #28c941; }
 
   .mac-title {
-    font-size: 0.72rem;
-    color: rgba(255,215,0,0.5);
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    letter-spacing: 0.05em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffbd2e;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
   }
 
   /* ── Corps ── */
@@ -285,7 +302,6 @@ const StyledWrapper = styled.div`
     font-family: monospace;
     color: rgba(255,215,0,0.5);
     letter-spacing: 0.08em;
-    // text-transform: lowercase;
   }
 
   .label-arrow { color: #ff6ac1; margin-right: 4px; }
@@ -314,16 +330,6 @@ const StyledWrapper = styled.div`
   .terminal-textarea {
     resize: none;
     min-height: 90px;
-  }
-
-  /* ── Séparateur ── */
-  .terminal-separator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-top: 1px solid rgba(255,215,0,0.08);
-    padding-top: 12px;
-    margin-top: 2px;
   }
 
   /* ── Bouton CTA ── */
@@ -403,47 +409,5 @@ const StyledWrapper = styled.div`
     background: rgba(220,38,38,0.08);
     border: 1px solid rgba(220,38,38,0.2);
     color: #dc2626;
-  }
-
-
-  /* ── Barre de titre macOS ── */
-  .mac-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Permet de centrer parfaitement le titre grâce à tes deux blocs .mac-dots */
-    background-color: #1a1c24;
-    padding: 14px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-
-  .mac-dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  .mac-dots .dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-
-  .mac-dots .red    { background-color: #ff5f57; }
-  .mac-dots .yellow { background-color: #ffbd2e; }
-  .mac-dots .green  { background-color: #28c941; }
-
-  /* ── Style du Titre Modifié ── */
-  .mac-title {
-    /* Option 1 : Look Premium & Moderne (Style macOS / SF Pro) */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    
-    /* Option 2 : Décommente la ligne du dessous si tu veux rester sur un look 100% "Code" */
-    /* font-family: "Fira Code", JetBrains Mono, Monaco, monospace; */
-
-    font-size: 1.25rem;       /* Augmentation de la taille (ajuste à 1.35rem si besoin) */
-    font-weight: 600;         /* Écriture semi-bold pour donner de l'impact */
-    color: #ffbd2e;           /* Ton cyan actuel, très lisible */
-    letter-spacing: 0.5px;    /* Léger espacement des lettres pour l'élégance */
-    text-transform: capitalize; /* Optionnel : force la première lettre en majuscule */
   }
 `
