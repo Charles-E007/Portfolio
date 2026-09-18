@@ -17,8 +17,8 @@ export default function Hero() {
           children: _jsx(GridScan, {
             sensitivity: 0.55,
             lineThickness: 1,
-            linesColor: "#0c0903",
-            scanColor: "#06e3f3", //bcee07
+            linesColor: "#f3cf03",
+            scanColor: "#0fe0cf", //bcee07
             scanOpacity: 0.4,
             gridScale: 0.1,
             lineStyle: "solid",
