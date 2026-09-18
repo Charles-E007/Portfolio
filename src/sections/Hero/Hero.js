@@ -18,7 +18,7 @@ export default function Hero() {
             sensitivity: 0.55,
             lineThickness: 1,
             linesColor: "#f3cf03",
-            scanColor: "#0fe0cf", //bcee07
+            scanColor: "#07fad1", //bcee07
             scanOpacity: 0.4,
             gridScale: 0.1,
             lineStyle: "solid",
