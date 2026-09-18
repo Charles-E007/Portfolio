@@ -82,7 +82,7 @@ export default function Hero() {
             children: _jsx("img", {
               className:
                 "w-72 h-72 md:w-80 md:h-80 rounded-full border-2 border-[var(--color-primary)]/40 object-cover",
-              src: "image/photo.png",
+              src: "image/charles_pic/photo.png",
               alt: "Charles Emmanuel",
             }),
           }),
